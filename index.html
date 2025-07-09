@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nova AI Project Generator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Nova AI 🚀</h1>
+    <p class="subtitle">Generate full project plans with AI in seconds</p>
+    
+    <textarea id="promptInput" placeholder="e.g. Build me a resume analyzer using AI and FastAPI"></textarea>
+    <button onclick="generateProject()">Generate Project</button>
+
+    <div id="loading" style="display:none">⏳ Generating your project...</div>
+    <pre id="outputBox"></pre>
+  </div>
+
+  <footer>Made with ❤️ by Sanket • Powered by Azure + FastAPI</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
