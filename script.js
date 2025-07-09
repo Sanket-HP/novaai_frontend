@@ -21,12 +21,12 @@ async function generateProject() {
     });
 
     const data = await response.json();
-    console.log("Response data:", data);  // helpful for debugging
+    console.log("API Response:", data); // 🐞 Debug
 
-    if (data.status === "success") {
-      outputBox.innerText = data.project || "✅ Project generated!";
+    if (data.status === "success" && data.result && data.result.project) {
+      outputBox.innerText = data.result.project;
     } else {
-      outputBox.innerText = "❌ Error: " + (data.message || "Unknown error");
+      outputBox.innerText = "❌ Error: " + (data.message || "No project returned.");
     }
   } catch (error) {
     outputBox.innerText = "❌ Failed to connect to backend.\n" + error.message;
