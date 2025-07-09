@@ -3,22 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nova AI Project Generator</title>
+  <title>Nova AI 🚀 - Project Generator</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="container">
-    <h1>Nova AI 🚀</h1>
-    <p class="subtitle">Generate full project plans with AI in seconds</p>
-    
-    <textarea id="promptInput" placeholder="e.g. Build me a resume analyzer using AI and FastAPI"></textarea>
-    <button onclick="generateProject()">Generate Project</button>
+  <!-- Microsoft for Startups badge -->
+  <a href="https://www.microsoft.com/startups" target="_blank" class="founders-badge">
+    <img src="https://seeklogo.com/images/M/microsoft-startups-logo-20B448E9E8-seeklogo.com.png" alt="Microsoft for Startups" />
+  </a>
 
-    <div id="loading" style="display:none">⏳ Generating your project...</div>
-    <pre id="outputBox"></pre>
+  <div class="ai-bg">
+    <div class="container">
+      <h1 class="neon-text">Nova AI ⚙️🧠</h1>
+      <p class="subtitle">Empowering your ideas with AI & Machine Learning</p>
+
+      <textarea id="promptInput" placeholder="✨ Describe your project idea..."></textarea>
+      <button onclick="generateProject()">Generate Project 🚀</button>
+
+      <div id="loading" class="blinking" style="display:none">⏳ Generating your project...</div>
+      <pre id="outputBox"></pre>
+    </div>
+
+    <footer>
+      &copy; 2025 Nova AI • Developed by <strong>Sanket Sarjerao Patil</strong> • Powered by Azure + FastAPI <br/>
+      💼 Supported by <a href="https://www.microsoft.com/startups" target="_blank">Microsoft for Startups Founders Hub</a>
+    </footer>
   </div>
-
-  <footer>Made with ❤️ by Sanket • Powered by Azure + FastAPI</footer>
 
   <script src="script.js"></script>
 </body>
