@@ -2,27 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Nova AI Project Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nova AI - Project Generator</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
     <h1 class="neon-text">Nova AI 🚀</h1>
-    <p class="subtitle">Generate full project plans with AI in seconds</p>
+    <p class="subtitle">Create your project structure or code with a single prompt</p>
 
-    <textarea id="promptInput" placeholder="e.g. Build me a resume analyzer using AI and FastAPI"></textarea>
-    <button onclick="generateProject()">Generate Project</button>
+    <div class="toggle">
+      <label><input type="radio" name="mode" value="generate-project" checked> Project Plan</label>
+      <label><input type="radio" name="mode" value="ai-code"> AI Code</label>
+    </div>
 
-    <div id="loading" class="blinking" style="display:none">⏳ Generating your project...</div>
+    <textarea id="promptInput" placeholder="e.g. Build a resume analyzer using AI and FastAPI"></textarea>
+    <button onclick="handleGenerate()">Generate</button>
+
+    <div id="loading" style="display:none">⏳ Generating your response...</div>
+
+    <div class="preview-actions">
+      <button onclick="openPreview()">🌍 Open Live Preview</button>
+      <button onclick="downloadAsZip()">📝 Download as ZIP</button>
+    </div>
+
     <pre id="outputBox"></pre>
   </div>
 
-  <footer>© 2025 Sanket Sarjerao Patil • Powered by Azure + FastAPI + Nova AI 💡</footer>
-
-  <div class="founders-badge">
-    <img src="https://img.icons8.com/ios-filled/50/rocket.png" alt="Nova AI Badge" />
-  </div>
+  <footer>
+    <strong>
+      © 2025 | Developer: Sanket Sarjerao Patil | Supported by Microsoft for Startups Founders Hub
+    </strong>
+  </footer>
 
   <script src="script.js"></script>
 </body>
