@@ -1,74 +1,124 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
+/* Background animation */
+body, html {
   margin: 0;
   padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', sans-serif;
+  background: #1a1a2e;
+  overflow-x: hidden;
 }
 
-.container {
-  max-width: 700px;
-  margin: 40px auto;
-  background: #fff;
+.background {
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  filter: blur(80px);
+  z-index: 0;
+  animation: rotateBG 30s linear infinite;
+}
+
+@keyframes rotateBG {
+  0% { transform: rotate(0deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1.2); }
+}
+
+/* Glassmorphism Box */
+.glass-box {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 60px auto;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
   padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  color: white;
 }
 
 h1 {
   text-align: center;
-  color: #222;
+  margin-bottom: 20px;
 }
 
 textarea {
   width: 100%;
   height: 150px;
   padding: 12px;
-  margin: 10px 0;
+  border-radius: 10px;
+  border: none;
+  resize: vertical;
   font-size: 16px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+
+textarea::placeholder {
+  color: #eee;
 }
 
 button {
   width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  background-color: #0078D7;
-  color: white;
+  padding: 14px;
+  margin-top: 16px;
+  background-color: #00bcd4;
   border: none;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
   border-radius: 8px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 button:hover {
-  background-color: #005ec1;
+  background-color: #0097a7;
 }
 
 #status {
   text-align: center;
   margin-top: 10px;
-  color: #555;
+  color: #d1d1d1;
 }
 
 #preview {
   margin-top: 20px;
   width: 100%;
-  height: 300px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  height: 320px;
+  border: 1px solid #999;
+  border-radius: 10px;
+  background: white;
 }
 
 #downloadBtn {
-  display: block;
-  margin: 20px auto;
-  text-align: center;
-  background: #28a745;
+  display: none;
+  margin: 20px auto 0;
   padding: 12px 24px;
+  background-color: #4CAF50;
   color: white;
   text-decoration: none;
-  border-radius: 8px;
+  font-weight: bold;
+  border-radius: 10px;
+  text-align: center;
+  display: block;
+  width: fit-content;
+  transition: background 0.3s ease;
 }
 
 #downloadBtn:hover {
-  background: #218838;
+  background-color: #45a049;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #ddd;
+  font-size: 14px;
+  margin-top: 40px;
+  z-index: 2;
+  position: relative;
 }
