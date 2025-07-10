@@ -1,57 +1,55 @@
-async function handleGenerate() {
-  const prompt = document.getElementById("promptInput").value.trim();
-  const outputBox = document.getElementById("outputBox");
-  const loading = document.getElementById("loading");
-  const selectedMode = document.querySelector("input[name='mode']:checked").value;
+const generateBtn = document.getElementById("generateBtn");
+const promptInput = document.getElementById("prompt");
+const statusText = document.getElementById("status");
+const downloadBtn = document.getElementById("downloadBtn");
+const previewFrame = document.getElementById("preview");
+
+generateBtn.addEventListener("click", async () => {
+  const prompt = promptInput.value.trim();
 
   if (!prompt) {
-    alert("Please enter a project prompt!");
+    alert("Please enter a prompt.");
     return;
   }
 
-  outputBox.innerText = "";
-  loading.style.display = "block";
-
-  const endpoint =
-    selectedMode === "ai-code"
-      ? "https://novaai-backend-hgh3c6f8hxhgf6cn.centralindia-01.azurewebsites.net/ai-code"
-      : "https://novaai-backend-hgh3c6f8hxhgf6cn.centralindia-01.azurewebsites.net/generate-project";
+  statusText.textContent = "🧠 Generating project... please wait...";
+  previewFrame.style.display = "none";
+  downloadBtn.style.display = "none";
 
   try {
-    const response = await fetch(endpoint, {
+    const response = await fetch("https://novaai-backend-hgh3c6f8hxhgf6cn.centralindia-01.azurewebsites.net/generate/", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: JSON.stringify({ prompt })
+      body: `prompt=${encodeURIComponent(prompt)}`,
     });
 
-    const data = await response.json();
-    if (data.status === "success") {
-      outputBox.innerText = data.result.project || data.result.code || JSON.stringify(data.result, null, 2);
+    const result = await response.json();
+
+    if (response.ok) {
+      statusText.textContent = result.message;
+
+      // Show download button
+      downloadBtn.href = "https://novaai-backend-hgh3c6f8hxhgf6cn.centralindia-01.azurewebsites.net/download";
+      downloadBtn.style.display = "block";
+
+      // Preview frontend (fetch index.html from generated project if served)
+      fetch("generated_projects/latest_project/frontend/index.html")
+        .then(res => res.text())
+        .then(html => {
+          previewFrame.style.display = "block";
+          previewFrame.srcdoc = html;
+        }).catch(() => {
+          previewFrame.style.display = "none";
+        });
+
     } else {
-      outputBox.innerText = "❌ Error: " + (data.message || "Something went wrong.");
+      statusText.textContent = result.error || "❌ Something went wrong.";
     }
+
   } catch (error) {
-    outputBox.innerText = "❌ Failed to connect to backend.\n" + error.message;
-  } finally {
-    loading.style.display = "none";
+    console.error("Error:", error);
+    statusText.textContent = "❌ Server error. Try again.";
   }
-}
-
-function openPreview() {
-  const blob = new Blob([document.getElementById("outputBox").innerText], { type: "text/html" });
-  const url = URL.createObjectURL(blob);
-  window.open(url, "_blank");
-}
-
-function downloadAsZip() {
-  const text = document.getElementById("outputBox").innerText;
-  const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
-  const link = document.createElement("a");
-  link.href = URL.createObjectURL(blob);
-  link.download = "generated_project.txt"; // or change to .zip if zipped server-side
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
+});

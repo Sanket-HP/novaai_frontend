@@ -2,38 +2,19 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nova AI - Project Generator</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nova AI App Builder</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <h1 class="neon-text">Nova AI 🚀</h1>
-    <p class="subtitle">Create your project structure or code with a single prompt</p>
-
-    <div class="toggle">
-      <label><input type="radio" name="mode" value="generate-project" checked> Project Plan</label>
-      <label><input type="radio" name="mode" value="ai-code"> AI Code</label>
-    </div>
-
-    <textarea id="promptInput" placeholder="e.g. Build a resume analyzer using AI and FastAPI"></textarea>
-    <button onclick="handleGenerate()">Generate</button>
-
-    <div id="loading" style="display:none">⏳ Generating your response...</div>
-
-    <div class="preview-actions">
-      <button onclick="openPreview()">🌍 Open Live Preview</button>
-      <button onclick="downloadAsZip()">📝 Download as ZIP</button>
-    </div>
-
-    <pre id="outputBox"></pre>
+    <h1>🧠 Nova AI App Builder</h1>
+    <textarea id="prompt" placeholder="Describe your project..."></textarea>
+    <button id="generateBtn">⚙️ Generate Project</button>
+    <p id="status"></p>
+    <iframe id="preview" title="Live Preview" style="display:none;"></iframe>
+    <a id="downloadBtn" href="#" style="display:none;" download="generated_project.zip">⬇️ Download Project ZIP</a>
   </div>
-
-  <footer>
-    <strong>
-      © 2025 | Developer: Sanket Sarjerao Patil | Supported by Microsoft for Startups Founders Hub
-    </strong>
-  </footer>
 
   <script src="script.js"></script>
 </body>

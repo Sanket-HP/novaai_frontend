@@ -1,99 +1,74 @@
-/* Background and base style */
-body, html {
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
   margin: 0;
   padding: 0;
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
-  height: 100%;
-  background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
-/* Main container */
 .container {
-  max-width: 800px;
-  margin: 100px auto;
+  max-width: 700px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+h1 {
   text-align: center;
-  padding: 2rem;
-  background: rgba(20, 30, 40, 0.9);
-  border-radius: 15px;
-  box-shadow: 0 0 25px rgba(0, 255, 255, 0.3);
+  color: #222;
 }
 
-/* Heading */
-h1.neon-text {
-  font-size: 3rem;
-  color: #00f5c9;
-  text-shadow: 0 0 8px #00fff7, 0 0 16px #00fff7;
-}
-
-/* Subtitle */
-.subtitle {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  color: #cceeff;
-}
-
-/* Input */
 textarea {
   width: 100%;
-  height: 100px;
-  padding: 1rem;
-  border-radius: 10px;
-  border: none;
-  resize: vertical;
-  font-size: 1rem;
-  color: black;
+  height: 150px;
+  padding: 12px;
+  margin: 10px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
-/* Button */
 button {
-  margin-top: 1rem;
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  background-color: #0078D7;
+  color: white;
   border: none;
   border-radius: 8px;
-  background-color: #00c9ff;
-  color: #000;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #00fff7;
-  box-shadow: 0 0 10px #00f5c9;
+  background-color: #005ec1;
 }
 
-/* Loading text */
-#loading {
-  margin-top: 20px;
-  color: #ffcc00;
-  font-weight: bold;
-  font-size: 1rem;
-}
-
-/* Output display */
-#outputBox {
-  margin-top: 1rem;
-  text-align: left;
-  white-space: pre-wrap;
-  background-color: #101820;
-  padding: 1rem;
-  border-radius: 10px;
-  color: #cceeff;
-  border: 1px solid #00c9ff;
-  max-height: 400px;
-  overflow-y: auto;
-}
-
-/* Footer */
-footer {
+#status {
   text-align: center;
-  padding: 20px;
-  margin-top: 50px;
-  color: #ccc;
-  font-size: 1rem;
-  font-weight: bold;
+  margin-top: 10px;
+  color: #555;
+}
+
+#preview {
+  margin-top: 20px;
+  width: 100%;
+  height: 300px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+#downloadBtn {
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  background: #28a745;
+  padding: 12px 24px;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+#downloadBtn:hover {
+  background: #218838;
 }
