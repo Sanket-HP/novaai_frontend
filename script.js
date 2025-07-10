@@ -1,20 +1,17 @@
-const generateBtn = document.getElementById("generateBtn");
-const promptInput = document.getElementById("prompt");
-const statusText = document.getElementById("status");
-const downloadBtn = document.getElementById("downloadBtn");
-const previewFrame = document.getElementById("preview");
-
-generateBtn.addEventListener("click", async () => {
-  const prompt = promptInput.value.trim();
+document.getElementById("generateBtn").addEventListener("click", async () => {
+  const prompt = document.getElementById("prompt").value.trim();
+  const status = document.getElementById("status");
+  const preview = document.getElementById("preview");
+  const downloadBtn = document.getElementById("downloadBtn");
 
   if (!prompt) {
-    alert("Please enter a prompt.");
+    status.textContent = "Please enter a project idea.";
     return;
   }
 
-  statusText.textContent = "🧠 Generating project... please wait...";
-  previewFrame.style.display = "none";
+  status.textContent = "🔄 Generating project using AI...";
   downloadBtn.style.display = "none";
+  preview.style.display = "none";
 
   try {
     const response = await fetch("https://novaai-backend-hgh3c6f8hxhgf6cn.centralindia-01.azurewebsites.net/generate/", {
@@ -22,34 +19,23 @@ generateBtn.addEventListener("click", async () => {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: `prompt=${encodeURIComponent(prompt)}`,
+      body: new URLSearchParams({ prompt }),
     });
 
     const result = await response.json();
 
     if (response.ok) {
-      statusText.textContent = result.message;
-
-      // Show download button
+      status.textContent = "✅ Project generated successfully!";
       downloadBtn.href = "https://novaai-backend-hgh3c6f8hxhgf6cn.centralindia-01.azurewebsites.net/download";
-      downloadBtn.style.display = "block";
+      downloadBtn.style.display = "inline-block";
 
-      // Preview frontend (fetch index.html from generated project if served)
-      fetch("generated_projects/latest_project/frontend/index.html")
-        .then(res => res.text())
-        .then(html => {
-          previewFrame.style.display = "block";
-          previewFrame.srcdoc = html;
-        }).catch(() => {
-          previewFrame.style.display = "none";
-        });
-
+      preview.src = "https://novaai-backend-hgh3c6f8hxhgf6cn.centralindia-01.azurewebsites.net/generated_projects/latest_project/frontend/index.html";
+      preview.style.display = "block";
     } else {
-      statusText.textContent = result.error || "❌ Something went wrong.";
+      status.textContent = "❌ Failed to generate project: " + result.error;
     }
-
   } catch (error) {
     console.error("Error:", error);
-    statusText.textContent = "❌ Server error. Try again.";
+    status.textContent = "❌ Network or server error.";
   }
 });
